@@ -8,8 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import com.google.gson.*;
+import com.google.gson.reflect.*;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         setContentView(R.layout.activity_main);
         Log.d("json_output", "hello from onCreate");
 
-        new JsonFile(this, this).execute(JSON_FILE);
+
 
         //ArrayList<RecyclerViewItem> items = new ArrayList<>(Arrays.asList(
         //        new RecyclerViewItem("Matterhorn"),
@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
             }
         });
 
+        new JsonFile(this, this).execute(JSON_FILE);
+
         RecyclerView view = findViewById(R.id.recycler_view);
         view.setLayoutManager(new LinearLayoutManager(this));
         view.setAdapter(adapter);
@@ -57,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
     @Override
     public void onPostExecute(String json) {
+
         Log.d("json_output", "hello from onPostExecute");
         Gson gson = new Gson();
 
